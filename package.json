@@ -1,6 +1,6 @@
 {
-  "name": "webaudio-oscilloscope",
-  "version": "3.2.1",
+  "name": "webaudio-oscilloscope-ts",
+  "version": "1.0.0",
   "keywords": [
     "webaudio",
     "oscilloscope",
@@ -17,29 +17,25 @@
     "audio recorder",
     "audio analyzer"
   ],
-  "main": "dist/index.js",
-  "source": "index.js",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:theanam/webaudio-oscilloscope.git"
+  "type": "commonjs",
+  "main": "./build/index.js",
+  "types": "./build/index.d.ts",
+  "exports": {
+    "import": "./build/index.js",
+    "require": "./build/index.js"
+  },
+  "scripts": {
+    "prepare": "npm run build",
+    "build": "tsc && node -r ts-node/register build.ts"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "parcel-bundler": "^1.12.4"
+    "@types/node": "^24.3.1",
+    "esbuild": "^0.25.8",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   },
-  "homepage": "https://theanam.github.io/webaudio-oscilloscope/",
-  "scripts": {
-    "run-example": "parcel example/index.html -d temp-example",
-    "build-example": "parcel build example/index.html -d dist-example --public-url /webaudio-oscilloscope",
-    "build": "parcel build index.js --global _osc",
-    "watch": "parcel watch index.js --global _osc",
-    "publish-page": "yarn build-example && npx gh-pages -d dist-example && rm -rf dist-example"
-  },
-  "babel": {
-    "presets": [
-      "env"
-    ]
+  "dependencies": {
+    "standardized-audio-context": "^25.3.77"
   }
 }
